@@ -154,7 +154,6 @@
       color: #00ffe8;
       text-decoration: underline;
     }
-
     /* Delta specific styles */
     .executor-card.delta-card {
       background: linear-gradient(135deg, #0f2027, #203a43);
@@ -173,7 +172,6 @@
     .executor-card.delta-card img:hover {
       border-color: #00ffe8;
     }
-
     /* Dark mode advanced tweaks */
     @media (prefers-color-scheme: dark) {
       body {
@@ -237,15 +235,15 @@
     <input type="text" placeholder="Tìm kiếm executor..." />
   </div>
 
-  <div class="tabs">
-    <button class="active">Quốc Tế</button>
-    <button>VNG</button>
-    <button>IOS</button>
-    <button>Windows</button>
+  <div class="tabs" role="tablist">
+    <button class="active" role="tab" aria-selected="true" aria-controls="quoc-te" id="tab-quoc-te">Quốc Tế</button>
+    <button role="tab" aria-selected="false" aria-controls="vng" id="tab-vng">VNG</button>
+    <button role="tab" aria-selected="false" aria-controls="ios" id="tab-ios">IOS</button>
+    <button role="tab" aria-selected="false" aria-controls="windows" id="tab-windows">Windows</button>
   </div>
 
-  <!-- Tab Quốc Tế -->
-  <div class="tab-content active">
+  <!-- Quốc Tế -->
+  <div class="tab-content active" id="quoc-te" role="tabpanel" aria-labelledby="tab-quoc-te">
     <div class="executor-card delta-card">
       <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta Quốc Tế" />
       <a href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta-2.671.1822.apk/file" target="_blank" rel="noopener noreferrer">Delta Quốc Tế V2.671</a>
@@ -264,11 +262,57 @@
     </div>
   </div>
 
-  <!-- Tab VNG -->
-  <div class="tab-content">
+  <!-- VNG -->
+  <div class="tab-content" id="vng" role="tabpanel" aria-labelledby="tab-vng">
     <div class="executor-card delta-card">
       <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta VNG" />
       <a href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta+Vng+ChinhThuc+V2.672+By+codertoolroblox.apk/file" target="_blank" rel="noopener noreferrer">Delta VNG V2.672</a>
     </div>
     <div class="executor-card">
-      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arce
+      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X VNG" />
+      <a href="https://www.mediafire.com/file/vnyrzm1kgnd1fcf/ArceusX+VNG+1.6.7.apk/file" target="_blank" rel="noopener noreferrer">Arceus X VNG V1.6.7</a>
+    </div>
+  </div>
+
+  <!-- IOS -->
+  <div class="tab-content" id="ios" role="tabpanel" aria-labelledby="tab-ios">
+    <div class="executor-card delta-card">
+      <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta IOS" />
+      <a href="https://www.mediafire.com/file/kwlnbdtvm5ebylw/Delta-668.660-02.ipa.zip/file" target="_blank" rel="noopener noreferrer">Delta IOS IPA</a>
+    </div>
+    <div class="executor-card">
+      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X IOS" />
+      <a href="https://example.com/arceus-ios.ipa" target="_blank" rel="noopener noreferrer">Arceus X IOS</a>
+    </div>
+  </div>
+
+  <!-- Windows -->
+  <div class="tab-content" id="windows" role="tabpanel" aria-labelledby="tab-windows">
+    <div class="executor-card">
+      <img src="https://example.com/windows-icon.png" alt="Executor Windows" />
+      <a href="https://example.com/windows-executor.exe" target="_blank" rel="noopener noreferrer">Executor Windows</a>
+    </div>
+  </div>
+
+  <script>
+    const tabs = document.querySelectorAll('.tabs button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tabContents.forEach(c => c.classList.remove('active'));
+
+        // Add active class to current tab and content
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        tabContents[index].classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
