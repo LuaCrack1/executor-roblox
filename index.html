@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Roblox Executors Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -12,7 +12,6 @@
       padding: 0;
       background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
       color: white;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
     header {
       display: flex;
@@ -20,13 +19,11 @@
       align-items: center;
       padding: 15px 20px;
       background-color: #121212;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.8);
     }
     header h1 {
       margin: 0;
       font-size: 1.2rem;
       color: #00c6ff;
-      user-select: none;
     }
     .discord-btn {
       background: linear-gradient(45deg, #5865f2, #404eed);
@@ -35,18 +32,9 @@
       color: white;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(88,101,242,0.8);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-      user-select: none;
-    }
-    .discord-btn:hover {
-      background: linear-gradient(45deg, #404eed, #5865f2);
-      box-shadow: 0 6px 16px rgba(88,101,242,1);
     }
     .music-toggle {
       margin-left: 10px;
-      cursor: pointer;
-      vertical-align: middle;
     }
     .video-container {
       display: flex;
@@ -58,9 +46,6 @@
       max-width: 720px;
       height: 405px;
       border: none;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-      user-select: none;
     }
     .search-bar {
       display: flex;
@@ -75,21 +60,12 @@
       border: 1px solid #666;
       background: #121212;
       color: white;
-      font-size: 1rem;
-      transition: border-color 0.3s ease, background-color 0.3s ease;
-      user-select: text;
-    }
-    .search-bar input:focus {
-      outline: none;
-      border-color: #00c6ff;
-      background-color: #203a43;
     }
     .tabs {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
       margin: 20px 0;
-      user-select: none;
     }
     .tabs button {
       margin: 5px;
@@ -99,21 +75,13 @@
       color: white;
       border: none;
       cursor: pointer;
-      font-weight: 600;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     .tabs button.active {
       background: #00c6ff;
-      box-shadow: 0 4px 15px rgba(0,198,255,0.8);
-    }
-    .tabs button:hover:not(.active) {
-      background: #375a7f;
     }
     .tab-content {
       display: none;
       padding: 10px 20px;
-      max-width: 720px;
-      margin: 0 auto 40px auto;
     }
     .tab-content.active {
       display: block;
@@ -126,11 +94,6 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.4);
       display: flex;
       align-items: center;
-      transition: background 0.3s ease;
-      user-select: none;
-    }
-    .executor-card:hover {
-      background: #273850;
     }
     .executor-card img {
       width: 50px;
@@ -138,77 +101,15 @@
       border-radius: 50%;
       object-fit: cover;
       margin-right: 15px;
-      transition: border-color 0.3s ease;
-      border: 2px solid transparent;
-      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .executor-card img:hover {
+      transform: scale(1.1);
     }
     .executor-card a {
       color: #00c6ff;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1rem;
-      user-select: text;
-      transition: color 0.3s ease;
-    }
-    .executor-card a:hover {
-      color: #00ffe8;
-      text-decoration: underline;
-    }
-    /* Delta specific styles */
-    .executor-card.delta-card {
-      background: linear-gradient(135deg, #0f2027, #203a43);
-      box-shadow: 0 8px 20px rgba(0, 198, 255, 0.6);
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-    }
-    .executor-card.delta-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 30px rgba(0, 198, 255, 0.9);
-      background: linear-gradient(135deg, #142f48, #1e4a73);
-    }
-    .executor-card.delta-card img {
-      border: 3px solid #00c6ff;
-    }
-    .executor-card.delta-card img:hover {
-      border-color: #00ffe8;
-    }
-    /* Dark mode advanced tweaks */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: linear-gradient(to bottom, #0b131e, #172636, #22354a);
-        color: #cfd8dc;
-      }
-      header {
-        background-color: #0a0a0a;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.9);
-      }
-      .discord-btn {
-        box-shadow: 0 5px 15px rgba(88,101,242,1);
-      }
-      .search-bar input {
-        background: #121212;
-        border-color: #555;
-        color: #eee;
-      }
-      .search-bar input:focus {
-        background-color: #1a2a40;
-      }
-      .tabs button {
-        background: #34495e;
-      }
-      .tabs button.active {
-        box-shadow: 0 5px 18px rgba(0,198,255,1);
-      }
-      .tabs button:hover:not(.active) {
-        background: #2e4c6d;
-      }
-      .executor-card {
-        background: #121926;
-        box-shadow: 0 7px 18px rgba(0,0,0,0.7);
-      }
-      .executor-card:hover {
-        background: #1c2c43;
-      }
     }
   </style>
 </head>
@@ -218,102 +119,89 @@
     <div>
       <label for="music-toggle">Nhạc nền</label>
       <input type="checkbox" id="music-toggle" checked class="music-toggle" />
-      <a class="discord-btn" href="https://discord.gg/EzV3WbHBy2" target="_blank" rel="noopener noreferrer">Join Discord</a>
+      <a class="discord-btn" href="https://discord.gg/EzV3WbHBy2" target="_blank">Join Discord</a>
     </div>
   </header>
 
   <div class="video-container">
-    <iframe
-  id="ytplayer"
-  src="https://www.youtube.com/embed/2dJNaGxPHxE?autoplay=1&mute=1&loop=1&playlist=2dJNaGxPHxE"
-  allow="autoplay; encrypted-media"
-  allowfullscreen
-></iframe>
+    <iframe id="ytplayer" src="https://www.youtube.com/embed/2dJNaGxPHxE?autoplay=1&mute=1&loop=1&playlist=2dJNaGxPHxE" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 
   <div class="search-bar">
     <input type="text" placeholder="Tìm kiếm executor..." />
   </div>
 
-  <div class="tabs" role="tablist">
-    <button class="active" role="tab" aria-selected="true" aria-controls="quoc-te" id="tab-quoc-te">Quốc Tế</button>
-    <button role="tab" aria-selected="false" aria-controls="vng" id="tab-vng">VNG</button>
-    <button role="tab" aria-selected="false" aria-controls="ios" id="tab-ios">IOS</button>
-    <button role="tab" aria-selected="false" aria-controls="windows" id="tab-windows">Windows</button>
+  <div class="tabs">
+    <button class="active">Quốc Tế</button>
+    <button>VNG</button>
+    <button>IOS</button>
+    <button>Windows</button>
   </div>
 
   <!-- Quốc Tế -->
-  <div class="tab-content active" id="quoc-te" role="tabpanel" aria-labelledby="tab-quoc-te">
-    <div class="executor-card delta-card">
-      <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta Quốc Tế" />
-      <a href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta-2.671.1822.apk/file" target="_blank" rel="noopener noreferrer">Delta Quốc Tế V2.671</a>
+  <div class="tab-content active">
+    <div class="executor-card">
+      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" />
+      <a href="https://www.mediafire.com/file/neplb47dv2crqx0/Roblox_Arceus_X_NEO_1.6.7.apk/file">Arceus X Quốc Tế V1.6.7</a>
     </div>
     <div class="executor-card">
-      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X Quốc Tế" />
-      <a href="https://www.mediafire.com/file/neplb47dv2crqx0/Roblox_Arceus_X_NEO_1.6.7.apk/file" target="_blank" rel="noopener noreferrer">Arceus X Quốc Tế V1.6.7</a>
+      <img src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp" />
+      <a href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus+Quocte+V2.671+Update+Ui+YTNghiarobloxtt.apk/file">Fluxus Quốc Tế V2.671</a>
     </div>
     <div class="executor-card">
-      <img src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp" alt="Fluxus Quốc Tế" />
-      <a href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus+Quocte+V2.671+Update+Ui+YTNghiarobloxtt.apk/file" target="_blank" rel="noopener noreferrer">Fluxus Quốc Tế V2.671</a>
-    </div>
-    <div class="executor-card">
-      <img src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" alt="KRNL Quốc Tế" />
-      <a href="https://wrdcdn.net/r/54921/1747606249618/krnl_release_2.673.710_2025.5.17_26.apk" target="_blank" rel="noopener noreferrer">KRNL Quốc Tế</a>
+      <img src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" />
+      <a href="https://wrdcdn.net/r/54921/1747606249618/krnl_release_2.673.710_2025.5.17_26.apk">KRNL Quốc Tế</a>
     </div>
   </div>
 
   <!-- VNG -->
-  <div class="tab-content" id="vng" role="tabpanel" aria-labelledby="tab-vng">
-    <div class="executor-card delta-card">
-      <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta VNG" />
-      <a href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta+Vng+ChinhThuc+V2.672+By+codertoolroblox.apk/file" target="_blank" rel="noopener noreferrer">Delta VNG V2.672</a>
+  <div class="tab-content">
+    <div class="executor-card">
+      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" />
+      <a href="https://www.mediafire.com/file/trqqxtbzp8vzxp9/Roblox_-_VNG_Arceus_X_NEO_1.6.7.apk/file">Arceus X VNG V1.6.7</a>
     </div>
     <div class="executor-card">
-      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X VNG" />
-      <a href="https://www.mediafire.com/file/vnyrzm1kgnd1fcf/ArceusX+VNG+1.6.7.apk/file" target="_blank" rel="noopener noreferrer">Arceus X VNG V1.6.7</a>
+      <img src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" />
+      <a href="https://wrdcdn.net/r/54921/1747606313016/krnl_vng_release_2.272.706_2025.5.17_6.apk">KRNL VNG</a>
     </div>
   </div>
 
   <!-- IOS -->
-  <div class="tab-content" id="ios" role="tabpanel" aria-labelledby="tab-ios">
-    <div class="executor-card delta-card">
-      <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta IOS" />
-      <a href="https://www.mediafire.com/file/kwlnbdtvm5ebylw/Delta-668.660-02.ipa.zip/file" target="_blank" rel="noopener noreferrer">Delta IOS IPA</a>
-    </div>
+  <div class="tab-content">
     <div class="executor-card">
-      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X IOS" />
-      <a href="https://example.com/arceus-ios.ipa" target="_blank" rel="noopener noreferrer">Arceus X IOS</a>
+      <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" />
+      <a href="https://www.mediafire.com/file/6lcgdmn244ta2n5/ArceusX_1.6.4_2.668.658.ipa/file">Arceus X IOS</a>
     </div>
   </div>
 
   <!-- Windows -->
-  <div class="tab-content" id="windows" role="tabpanel" aria-labelledby="tab-windows">
-    <div class="tab-content">
-  <div class="executor-card">
-    <img src="https://repository-images.githubusercontent.com/764099728/cd3b348b-04b1-408f-9c84-ae7a6d7e960a" />
-    <a href="https://www.mediafire.com/file/lg13zoahhxjyjdc/Swift.zip/file">Swift Executor (Windows)</a>
+  <div class="tab-content">
+    <div class="executor-card">
+      <img src="https://repository-images.githubusercontent.com/764099728/cd3b348b-04b1-408f-9c84-ae7a6d7e960a" />
+      <a href="https://www.mediafire.com/file/lg13zoahhxjyjdc/Swift.zip/file">Swift Executor (Windows)</a>
+    </div>
   </div>
-</div>
-
 
   <script>
-    const tabs = document.querySelectorAll('.tabs button');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach((tab, index) => {
-      tab.addEventListener('click', () => {
-        // Remove active class from all tabs and contents
-        tabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tabContents.forEach(c => c.classList.remove('active'));
-
-        // Add active class to current tab and content
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        tabContents[index].classList.add('active');
+    const tabs = document.querySelectorAll(".tabs button");
+    const contents = document.querySelectorAll(".tab-content");
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        contents.forEach(c => c.classList.remove("active"));
+        tab.classList.add("active");
+        contents[idx].classList.add("active");
       });
+    });
+
+    const musicToggle = document.getElementById("music-toggle");
+    const yt = document.getElementById("ytplayer");
+    musicToggle.addEventListener("change", () => {
+      if (musicToggle.checked) {
+        yt.src = yt.src.replace("mute=1", "mute=0");
+      } else {
+        yt.src = yt.src.replace("mute=0", "mute=1");
+      }
     });
   </script>
 </body>
