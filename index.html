@@ -101,10 +101,6 @@
       border-radius: 50%;
       object-fit: cover;
       margin-right: 15px;
-      transition: transform 0.3s;
-    }
-    .executor-card img:hover {
-      transform: scale(1.1);
     }
     .executor-card a {
       color: #00c6ff;
@@ -138,7 +134,7 @@
     <button>Windows</button>
   </div>
 
-  <!-- Quốc Tế -->
+  <!-- Quốc tế -->
   <div class="tab-content active">
     <div class="executor-card">
       <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" />
@@ -152,6 +148,10 @@
       <img src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" />
       <a href="https://wrdcdn.net/r/54921/1747606249618/krnl_release_2.673.710_2025.5.17_26.apk">KRNL Quốc Tế</a>
     </div>
+    <div class="executor-card">
+      <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" />
+      <a href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta-2.671.1822.apk/file">Delta Quốc Tế (v2.671.1822)</a>
+    </div>
   </div>
 
   <!-- VNG -->
@@ -164,13 +164,21 @@
       <img src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" />
       <a href="https://wrdcdn.net/r/54921/1747606313016/krnl_vng_release_2.272.706_2025.5.17_6.apk">KRNL VNG</a>
     </div>
+    <div class="executor-card">
+      <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" />
+      <a href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta+Vng+ChinhThuc+V2.672+By+codertoolroblox.apk/file">Delta VNG (v2.672)</a>
+    </div>
   </div>
 
-  <!-- IOS -->
+  <!-- iOS -->
   <div class="tab-content">
     <div class="executor-card">
       <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" />
-      <a href="https://www.mediafire.com/file/6lcgdmn244ta2n5/ArceusX_1.6.4_2.668.658.ipa/file">Arceus X IOS</a>
+      <a href="https://www.mediafire.com/file/6lcgdmn244ta2n5/ArceusX_1.6.4_2.668.658.ipa/file">Arceus X iOS</a>
+    </div>
+    <div class="executor-card">
+      <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" />
+      <a href="https://www.mediafire.com/file/kwlnbdtvm5ebylw/Delta-668.660-02.ipa.zip/file">Delta iOS (v668.660-02)</a>
     </div>
   </div>
 
@@ -193,7 +201,6 @@
         contents[idx].classList.add("active");
       });
     });
-
     const musicToggle = document.getElementById("music-toggle");
     const yt = document.getElementById("ytplayer");
     musicToggle.addEventListener("change", () => {
