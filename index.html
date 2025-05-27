@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -9,6 +9,220 @@
     body {
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: #e0e0e0;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+    .card {
+      background-color: #1e1e2f;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 20px;
+    }
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.5);
+    }
+    .gradient-header {
+      font-weight: bold;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .discord-btn {
+      background: linear-gradient(45deg, #5865f2, #404eed);
+      border: none;
+      color: white;
+      border-radius: 30px;
+      padding: 8px 16px;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    .discord-btn:hover {
+      opacity: 0.85;
+    }
+    .nav-tabs .nav-link.active {
+      background-color: #2c3e50;
+      color: #00c6ff;
+      border-color: transparent;
+    }
+    .nav-tabs .nav-link {
+      color: #aaa;
+    }
+    .search-input {
+      border-radius: 30px;
+      border: 1px solid #666;
+      padding: 6px 16px;
+      background-color: #121212;
+      color: #fff;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .executor-section h5 {
+      margin-top: 10px;
+      color: #00c6ff;
+    }
+    .settings {
+      color: #ccc;
+      cursor: pointer;
+    }
+    .form-check-input:checked {
+      background-color: #00c6ff;
+      border-color: #00c6ff;
+    }
+    iframe.music-player {
+      width: 100%;
+      height: 80px;
+      border: none;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="gradient-header">Roblox Executors Dashboard</h3>
+      <div class="d-flex align-items-center gap-3">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="musicToggle" checked>
+          <label class="form-check-label" for="musicToggle">Nhạc nền</label>
+        </div>
+        <a href="https://discord.gg/EzV3WbHBy2" target="_blank" class="discord-btn">Join Discord</a>
+      </div>
+    </div>
+
+    <!-- YouTube Embed -->
+    <div id="musicPlayer">
+      <iframe class="music-player" src="https://www.youtube.com/embed/GmTOltTPyxk?si=yEcY_O2imz1PTXEW&amp;autoplay=1&amp;mute=1&amp;loop=1" allow="autoplay"></iframe>
+    </div>
+
+    <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm executor...">
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="executorTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="qt-tab" data-bs-toggle="tab" data-bs-target="#qt" type="button" role="tab">Quốc Tế</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="vng-tab" data-bs-toggle="tab" data-bs-target="#vng" type="button" role="tab">VNG</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="ios-tab" data-bs-toggle="tab" data-bs-target="#ios" type="button" role="tab">IOS</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="win-tab" data-bs-toggle="tab" data-bs-target="#win" type="button" role="tab">Windows</button>
+      </li>
+    </ul>
+
+    <!-- Nội dung Tabs -->
+    <div class="tab-content mt-3" id="executorTabContent">
+      <div class="tab-pane fade show active" id="qt" role="tabpanel">
+        <!-- Quốc Tế -->
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" class="avatar">
+            <div>
+              <h5>Delta Quốc Tế</h5>
+              <a href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta-2.671.1822.apk/file" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp" class="avatar">
+            <div>
+              <h5>Fluxus Quốc Tế V2.671</h5>
+              <a href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus+Quocte+V2.671+Update+Ui+YTNghiarobloxtt.apk/file" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" class="avatar">
+            <div>
+              <h5>KRNL Quốc Tế</h5>
+              <a href="https://wrdcdn.net/r/54921/1747606249618/krnl_release_2.673.710_2025.5.17_26.apk" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" class="avatar">
+            <div>
+              <h5>Arceus X Quốc Tế</h5>
+              <a href="https://www.mediafire.com/file/neplb47dv2crqx0/Roblox_Arceus_X_NEO_1.6.7.apk/file" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="vng" role="tabpanel">
+        <!-- VNG -->
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" class="avatar">
+            <div>
+              <h5>Delta VNG</h5>
+              <a href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta+Vng+ChinhThuc+V2.672+By+codertoolroblox.apk/file" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" class="avatar">
+            <div>
+              <h5>KRNL VNG</h5>
+              <a href="https://wrdcdn.net/r/54921/1747606313016/krnl_vng_release_2.272.706_2025.5.17_6.apk" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" class="avatar">
+            <div>
+              <h5>Arceus X VNG</h5>
+              <a href="https://www.mediafire.com/file/trqqxtbzp8vzxp9/Roblox_-_VNG_Arceus_X_NEO_1.6.7.apk/file" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="ios" role="tabpanel">
+        <!-- IOS -->
+        <div class="card p-3">
+          <div class="d-flex align-items-center">
+            <img src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" class="avatar">
+            <div>
+              <h5>Arceus X iOS</h5>
+              <a href="https://www.mediafire.com/file/6lcgdmn244ta2n5/ArceusX_1.6.4_2.668.658.ipa/file" target="_blank">Tải về</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="win" role="tabpanel">
+        <p>Đang cập nhật dữ liệu Windows...</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+      const val = this.value.toLowerCase();
+      document.querySelectorAll('.card').forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(val) ? '' : 'none';
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
       font-family: 'Segoe UI', sans-serif;
       overflow-x: hidden;
     }
