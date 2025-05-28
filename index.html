@@ -1,11 +1,229 @@
-<section id="executors-dashboard" class="container my-4">
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roblox Executors Dashboard</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Toàn bộ body dùng font dễ đọc */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      color: #f8f9fa;
+      padding-top: 70px; /* dành cho header cố định */
+    }
+    /* Header cố định bóng đổ */
+    header.navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1050;
+      background: rgba(33, 37, 41, 0.95);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    header .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #a78bfa;
+      letter-spacing: 1px;
+      user-select: none;
+    }
+    /* Menu setting dropdown custom */
+    .dropdown-menu {
+      background: #2a2d37;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      min-width: 180px;
+    }
+    .dropdown-item {
+      color: #ddd;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      border-radius: 8px;
+    }
+    .dropdown-item:hover {
+      background: #7c3aed;
+      color: white;
+    }
+
+    /* Tab buttons - custom active style */
+    .nav-tabs .nav-link {
+      color: #ccc;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px 12px 0 0;
+      background: transparent;
+      transition: all 0.3s ease;
+      padding: 10px 18px;
+    }
+    .nav-tabs .nav-link.active {
+      color: #fff;
+      background: #7c3aed;
+      box-shadow: 0 6px 12px rgb(124 58 237 / 0.6);
+    }
+    .nav-tabs .nav-link:hover:not(.active) {
+      color: #d8b4fe;
+      background: rgba(124, 58, 237, 0.3);
+    }
+    /* Tab content background */
+    .tab-content {
+      background: rgba(33, 37, 41, 0.8);
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      min-height: 300px;
+    }
+    /* Avatar tròn có bóng */
+    .executor-card img.avatar {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(124, 58, 237, 0.7);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    /* Hover avatar scale và bóng đổ mạnh hơn */
+    .executor-card img.avatar:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(124, 58, 237, 0.9);
+      cursor: pointer;
+    }
+    /* Card executor */
+    .executor-card {
+      width: 140px;
+      text-align: center;
+      color: #ddd;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 16px;
+      padding: 10px;
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      user-select: none;
+    }
+    /* Hover card nhẹ nâng lên */
+    .executor-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(124, 58, 237, 0.8);
+      cursor: default;
+    }
+    /* Link executor kiểu wave */
+    .executor-link.wave-effect {
+      position: relative;
+      display: inline-block;
+      color: #a78bfa;
+      text-decoration: none;
+      overflow: hidden;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 6px;
+      transition: color 0.3s ease;
+    }
+    .executor-link.wave-effect::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 120%;
+      height: 120%;
+      background: rgba(167, 139, 250, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s ease;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .executor-link.wave-effect:hover::after {
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+    .executor-link.wave-effect:hover {
+      color: #d8b4fe;
+    }
+    /* Disabled executor link style */
+    .executor-link.text-muted {
+      color: #999 !important;
+      cursor: not-allowed;
+      font-style: italic;
+    }
+
+    /* Responsive */
+    @media (max-width: 576px) {
+      .executor-card {
+        width: 110px;
+      }
+      .executor-card img.avatar {
+        width: 80px;
+        height: 80px;
+      }
+      .nav-tabs .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+      header .navbar-brand {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Roblox Executors</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navMenu"
+      aria-controls="navMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="settingsDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-gear-fill"></i> Settings
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="settingsDropdown">
+            <li><a class="dropdown-item" href="#">Dark Mode</a></li>
+            <li><a class="dropdown-item" href="#">Light Mode</a></li>
+            <li><a class="dropdown-item" href="#">Sound On/Off</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="https://discord.gg/EzV3WbHBy2" target="_blank">Join Discord</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="container my-4">
   <h2 class="text-center mb-4">Roblox Executors Dashboard</h2>
 
   <!-- YouTube Music Embed -->
   <div class="mb-4 text-center">
     <iframe
-      width="300"
-      height="80"
+      width="320"
+      height="90"
       src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&loop=1&playlist=YOUR_VIDEO_ID"
       title="Background Music"
       frameborder="0"
@@ -15,7 +233,12 @@
   </div>
 
   <!-- Tabs Nav -->
-  <ul class="nav nav-tabs justify-content-center" id="executorsTab" role="tablist">
+  <ul
+    class="nav nav-tabs justify-content-center"
+    id="executorsTab"
+    role="tablist"
+    style="user-select:none"
+  >
     <li class="nav-item" role="presentation">
       <button
         class="nav-link active"
@@ -75,116 +298,110 @@
   </ul>
 
   <!-- Tabs Content -->
-  <div class="tab-content mt-3" id="executorsTabContent">
+  <div class="tab-content mt-4" id="executorsTabContent" style="user-select:none;">
     <!-- Quốc Tế -->
     <div
       class="tab-pane fade show active"
       id="international"
       role="tabpanel"
       aria-labelledby="international-tab"
-      tabindex="0"
     >
-      <div class="executor-list d-flex flex-wrap justify-content-center gap-3">
-        <!-- Arceus X -->
-        <div class="executor-card text-center" style="width: 130px;">
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <!-- Mỗi executor 1 card -->
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png"
-            alt="Arceus X"
-            draggable="false"
-          />
-          <a
-            href="https://www.mediafire.com/file/cxlu2v5tpw5b73b/ArceusX_1.6.7_2.672.706.apk/file"
-            target="_blank"
-            class="executor-link wave-effect d-block"
-          >
-            Arceus X
-          </a>
-        </div>
-
-        <!-- Delta -->
-        <div class="executor-card text-center" style="width: 130px;">
-          <img
-            class="avatar img-fluid mb-2"
-            src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
             alt="Delta"
-            draggable="false"
+            loading="lazy"
           />
           <a
-            href="https://www.mediafire.com/file/6bcj7qv26pkvz6q/Delta+ChinhThuc+V2.672+By+codertoolroblox.apk/file"
+            href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta-2.671.1822.apk/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Delta</a
           >
-            Delta
-          </a>
         </div>
 
-        <!-- Fluxus -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp"
+            class="avatar"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Fluxus_Logo.svg/512px-Fluxus_Logo.svg.png"
             alt="Fluxus"
-            draggable="false"
+            loading="lazy"
           />
           <a
-            href="https://www.mediafire.com/file/bv8v6qv0qkgp1oq/Fluxus+v1.12.7+By+The+Spyder_.exe/file"
+            href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus+Quocte+V2.671+Update+Ui+YTNghiarobloxtt.apk/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Fluxus</a
           >
-            Fluxus
-          </a>
         </div>
 
-        <!-- KRNL -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465"
-            alt="KRNL"
-            draggable="false"
-          />
-          <a
-            href="https://krnl.place/download"
-            target="_blank"
-            class="executor-link wave-effect d-block"
-          >
-            KRNL
-          </a>
-        </div>
-
-        <!-- Trigon -->
-        <div class="executor-card text-center" style="width: 130px;">
-          <img
-            class="avatar img-fluid mb-2"
+            class="avatar"
             src="https://trigonevo.com/wp-content/uploads/2021/09/cropped-New-Trigon-with-Shadow-300x300.png.webp"
             alt="Trigon"
-            draggable="false"
+            loading="lazy"
           />
           <a
             href="https://www.mediafire.com/file/z542j1lflbvoiqw/Trigon_2.673.17.apk/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Trigon</a
           >
-            Trigon
-          </a>
         </div>
 
-        <!-- Code X -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
+            class="avatar"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxUOVXzik-MKRUmG1DliQ9wKhtnSzjBQ3-bjJv33gQSQ&s"
             alt="Code X"
-            draggable="false"
+            loading="lazy"
           />
           <a
             href="https://www.mediafire.com/file/v4fiout63ecz33w/Codex+v2.673+AC+Bypass.apk/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Code X</a
           >
-            Code X
-          </a>
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="Krnl"
+            loading="lazy"
+          />
+          <a
+            href="https://wrdcdn.net/r/54921/1748417584902/krnl_release_2.673.710_2025.5.17_27.apk"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >KRNL</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/neplb47dv2crqx0/Roblox_Arceus_X_NEO_1.6.7.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Arceus X</a
+          >
         </div>
       </div>
     </div>
@@ -195,107 +412,87 @@
       id="vng"
       role="tabpanel"
       aria-labelledby="vng-tab"
-      tabindex="0"
     >
-      <div class="executor-list d-flex flex-wrap justify-content-center gap-3">
-        <!-- Arceus X -->
-        <div class="executor-card text-center" style="width: 130px;">
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png"
-            alt="Arceus X"
-            draggable="false"
-          />
-          <a
-            href="https://www.mediafire.com/file/trqqxtbzp8vzxp9/Roblox_-_VNG_Arceus_X_NEO_1.6.7.apk/file?dkey=jerwpb4vzk6&r=299"
-            target="_blank"
-            class="executor-link wave-effect d-block"
-          >
-            Arceus X
-          </a>
-        </div>
-
-        <!-- Delta -->
-        <div class="executor-card text-center" style="width: 130px;">
-          <img
-            class="avatar img-fluid mb-2"
-            src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
             alt="Delta VNG"
-            draggable="false"
+            loading="lazy"
           />
           <a
             href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta+Vng+ChinhThuc+V2.672+By+codertoolroblox.apk/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Delta</a
           >
-            Delta
-          </a>
         </div>
 
-        <!-- Fluxus -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp"
-            alt="Fluxus"
-            draggable="false"
-          />
-          <span
-            class="executor-link text-muted d-block"
-            style="cursor: not-allowed;"
-          >
-            Fluxus (Chưa cập nhật VNG)
-          </span>
-        </div>
-
-        <!-- KRNL -->
-        <div class="executor-card text-center" style="width: 130px;">
-          <img
-            class="avatar img-fluid mb-2"
-            src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465"
-            alt="KRNL"
-            draggable="false"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="KRNL VNG"
+            loading="lazy"
           />
           <a
             href="https://wrdcdn.net/r/54921/1748417605851/krnl_vng_release_2.272.706_2025.5.17_7.apk"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >KRNL</a
           >
-            KRNL
-          </a>
         </div>
 
-        <!-- Trigon -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://trigonevo.com/wp-content/uploads/2021/09/cropped-New-Trigon-with-Shadow-300x300.png.webp"
-            alt="Trigon"
-            draggable="false"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X VNG"
+            loading="lazy"
           />
-          <span
-            class="executor-link text-muted d-block"
-            style="cursor: not-allowed;"
+          <a
+            href="https://www.mediafire.com/file/trqqxtbzp8vzxp9/Roblox_-_VNG_Arceus_X_NEO_1.6.7.apk/file?dkey=jerwpb4vzk6&r=299"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Arceus X</a
           >
-            Trigon (Chưa có bản VNG)
-          </span>
         </div>
 
-        <!-- Code X -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
+            class="avatar"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxUOVXzik-MKRUmG1DliQ9wKhtnSzjBQ3-bjJv33gQSQ&s"
-            alt="Code X"
-            draggable="false"
+            alt="Code X VNG"
+            loading="lazy"
           />
           <a
             href="https://www.mediafire.com/file/28e75gz20qxzq4k/Codex+VNG+v2.672.apk/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Code X</a
           >
-            Code X
-          </a>
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Fluxus_Logo.svg/512px-Fluxus_Logo.svg.png"
+            alt="Fluxus VNG (chưa update)"
+            loading="lazy"
+          />
+          <a
+            href="#"
+            class="executor-link text-muted"
+            title="Chưa cập nhật"
+            tabindex="-1"
+            aria-disabled="true"
+            >Fluxus</a
+          >
         </div>
       </div>
     </div>
@@ -306,107 +503,70 @@
       id="ios"
       role="tabpanel"
       aria-labelledby="ios-tab"
-      tabindex="0"
     >
-      <div class="executor-list d-flex flex-wrap justify-content-center gap-3">
-        <!-- Arceus X -->
-        <div class="executor-card text-center" style="width: 130px;">
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png"
-            alt="Arceus X"
-            draggable="false"
-          />
-          <a
-            href="https://www.mediafire.com/file/6lcgdmn244ta2n5/ArceusX_1.6.4_2.668.658.ipa/file"
-            target="_blank"
-            class="executor-link wave-effect d-block"
-          >
-            Arceus X
-          </a>
-        </div>
-
-        <!-- Delta -->
-        <div class="executor-card text-center" style="width: 130px;">
-          <img
-            class="avatar img-fluid mb-2"
-            src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
             alt="Delta iOS"
-            draggable="false"
+            loading="lazy"
           />
           <a
             href="https://www.mediafire.com/file/kwlnbdtvm5ebylw/Delta-668.660-02.ipa.zip/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Delta</a
           >
-            Delta
-          </a>
         </div>
 
-        <!-- Fluxus -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp"
-            alt="Fluxus"
-            draggable="false"
-          />
-          <span
-            class="executor-link text-muted d-block"
-            style="cursor: not-allowed;"
-          >
-            Fluxus (Chưa cập nhật iOS)
-          </span>
-        </div>
-
-        <!-- KRNL -->
-        <div class="executor-card text-center" style="width: 130px;">
-          <img
-            class="avatar img-fluid mb-2"
-            src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465"
-            alt="KRNL"
-            draggable="false"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="KRNL iOS"
+            loading="lazy"
           />
           <a
             href="https://www.mediafire.com/file/t2xo8jyvsuxou3q/Krnl_release_670.ipa/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >KRNL</a
           >
-            KRNL
-          </a>
         </div>
 
-        <!-- Trigon -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://trigonevo.com/wp-content/uploads/2021/09/cropped-New-Trigon-with-Shadow-300x300.png.webp"
-            alt="Trigon"
-            draggable="false"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X iOS"
+            loading="lazy"
           />
-          <span
-            class="executor-link text-muted d-block"
-            style="cursor: not-allowed;"
+          <a
+            href="https://www.mediafire.com/file/6lcgdmn244ta2n5/ArceusX_1.6.4_2.668.658.ipa/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Arceus X</a
           >
-            Trigon (Chưa iOS)
-          </span>
         </div>
 
-        <!-- Code X -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
+            class="avatar"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxUOVXzik-MKRUmG1DliQ9wKhtnSzjBQ3-bjJv33gQSQ&s"
-            alt="Code X"
-            draggable="false"
+            alt="Code X iOS"
+            loading="lazy"
           />
           <a
             href="https://www.mediafire.com/file/7afzer5xxo1110n/Codex_2.674.782.ipa/file"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Code X</a
           >
-            Code X
-          </a>
         </div>
       </div>
     </div>
@@ -417,60 +577,628 @@
       id="windows"
       role="tabpanel"
       aria-labelledby="windows-tab"
-      tabindex="0"
     >
-      <div class="executor-list d-flex flex-wrap justify-content-center gap-3">
-        <!-- Delta PC -->
-        <div class="executor-card text-center" style="width: 130px;">
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png"
-            alt="Delta PC"
-            draggable="false"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="Delta Windows"
+            loading="lazy"
           />
           <a
-            href="https://www.mediafire.com/file/cyb9ax9ewckuse4/Delta.zip/file"
+            href="https://cdn.discordapp.com/attachments/1330609029564997632/1358531233354153758/Delta_2.673.5_win.zip"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Delta</a
           >
-            Delta PC
-          </a>
         </div>
 
-        <!-- Swift PC -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://swift-executor.com/logo.png"
-            alt="Swift PC"
-            draggable="false"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="KRNL Windows"
+            loading="lazy"
           />
           <a
-            href="https://www.mediafire.com/file/abcdef123456/Swift.exe/file"
+            href="https://cdn.discordapp.com/attachments/1330609029564997632/1358505323154498154/krnl_2.672.10_win.zip"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >KRNL</a
           >
-            Swift PC
-          </a>
         </div>
 
-        <!-- KRNL PC -->
-        <div class="executor-card text-center" style="width: 130px;">
+        <div class="executor-card">
           <img
-            class="avatar img-fluid mb-2"
-            src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465"
-            alt="KRNL PC"
-            draggable="false"
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X Windows"
+            loading="lazy"
           />
           <a
-            href="https://www.mediafire.com/file/xyz789/krnl_pc_release.exe/file"
+            href="https://cdn.discordapp.com/attachments/1330609029564997632/1358520278725438510/ArceusX_1.6.7_win.zip"
+            class="executor-link wave-effect"
             target="_blank"
-            class="executor-link wave-effect d-block"
+            rel="noopener noreferrer"
+            >Arceus X</a
           >
-            KRNL PC
-          </a>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- Bootstrap JS & Popper -->
+<script
+  src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+  integrity="sha384-VoPFm99iM1G7H2z9M8zSx4tRQq9O+gMDmr1+KcB+LnT7rL2dv7p1R7Ck8MNuoc0y"
+  crossorigin="anonymous"
+></script>
+
+<style>
+  /* Gradient background for body */
+  body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0f0f0;
+    min-height: 100vh;
+  }
+
+  /* Fixed header */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(25, 25, 40, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Header logo or brand */
+  .brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #ffd700;
+    letter-spacing: 2px;
+    cursor: default;
+  }
+
+  /* Nav menu in header */
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav ul li {
+    position: relative;
+  }
+
+  nav ul li a,
+  nav ul li button {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 600;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 6px;
+  }
+
+  nav ul li a:hover,
+  nav ul li button:hover {
+    color: #ffd700;
+    background-color: rgba(255, 215, 0, 0.15);
+  }
+
+  /* Settings dropdown menu */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0.3em;
+    vertical-align: 0.25em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-left: 0.3em solid transparent;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(25, 25, 40, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    padding: 0.75rem 1rem;
+    min-width: 180px;
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 1100;
+  }
+
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu {
+    display: flex;
+  }
+
+  .dropdown-menu a {
+    color: #f0f0f0;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.4rem 0.6rem;
+    border-radius: 5px;
+    transition: background-color 0.25s ease;
+  }
+
+  .dropdown-menu a:hover {
+    background-color: #764ba2;
+  }
+
+  /* Executor cards container */
+  .executor-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgb(0 0 0 / 0.25);
+    width: 140px;
+    text-align: center;
+    padding: 1rem 1rem 1.25rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .executor-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px rgb(255 215 0 / 0.55);
+  }
+
+  /* Avatar images circular */
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.6rem;
+    border: 3px solid #ffd700;
+    transition: transform 0.3s ease;
+  }
+
+  .executor-card:hover .avatar {
+    transform: scale(1.1);
+    border-color: #ffa500;
+  }
+
+  /* Executor links */
+  .executor-link {
+    display: inline-block;
+    color: #ffd700;
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .executor-link:hover {
+    color: #fffacd;
+    text-decoration: underline;
+  }
+
+  /* Wave effect on links */
+  .wave-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .wave-effect::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, #ffd700 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.3;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .wave-effect:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .executor-card {
+      width: 120px;
+      padding: 0.75rem 0.75rem 1rem;
+    }
+    .avatar {
+      width: 70px;
+      height: 70px;
+    }
+  }
+</style>
+
+<header>
+  <div class="brand">Roblox Executors</div>
+  <nav>
+    <ul>
+      <li><a href="#international" data-bs-toggle="tab">Quốc Tế</a></li>
+      <li><a href="#vng" data-bs-toggle="tab">VNG</a></li>
+      <li><a href="#ios" data-bs-toggle="tab">iOS</a></li>
+      <li><a href="#windows" data-bs-toggle="tab">Windows</a></li>
+      <li class="dropdown" tabindex="0">
+        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+          Settings
+        </button>
+        <div class="dropdown-menu" role="menu" aria-label="Settings Menu">
+          <a href="#" role="menuitem">Dark Mode</a>
+          <a href="#" role="menuitem">Light Mode</a>
+          <a href="#" role="menuitem">Help</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container" style="padding-top: 5.5rem;">
+  <!-- Tab nav here -->
+  <ul
+    class="nav nav-tabs justify-content-center"
+    id="executorsTab"
+    role="tablist"
+  >
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link active"
+        id="international-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#international"
+        type="button"
+        role="tab"
+        aria-controls="international"
+        aria-selected="true"
+      >
+        Quốc Tế
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="vng-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#vng"
+        type="button"
+        role="tab"
+        aria-controls="vng"
+        aria-selected="false"
+      >
+        VNG
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="ios-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#ios"
+        type="button"
+        role="tab"
+        aria-controls="ios"
+        aria-selected="false"
+      >
+        iOS
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button
+        class="nav-link"
+        id="windows-tab"
+        data-bs-toggle="tab"
+        data-bs-target="#windows"
+        type="button"
+        role="tab"
+        aria-controls="windows"
+        aria-selected="false"
+      >
+        Windows
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tabs Content -->
+  <div class="tab-content mt-4" id="executorsTabContent" style="user-select:none;">
+    <!-- Quốc Tế -->
+    <div
+      class="tab-pane fade show active"
+      id="international"
+      role="tabpanel"
+      aria-labelledby="international-tab"
+    >
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <!-- Mỗi executor 1 card -->
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="Delta"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta-2.671.1822.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Delta</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Fluxus_Logo.svg/512px-Fluxus_Logo.svg.png"
+            alt="Fluxus"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus+Quocte+V2.671+Update+Ui+YTNghiarobloxtt.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Fluxus</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://trigonevo.com/wp-content/uploads/2021/09/cropped-New-Trigon-with-Shadow-300x300.png.webp"
+            alt="Trigon"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/z542j1lflbvoiqw/Trigon_2.673.17.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Trigon</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxUOVXzik-MKRUmG1DliQ9wKhtnSzjBQ3-bjJv33gQSQ&s"
+            alt="Code X"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/v4fiout63ecz33w/Codex+v2.673+AC+Bypass.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Code X</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="Krnl"
+            loading="lazy"
+          />
+          <a
+            href="https://wrdcdn.net/r/54921/1748417584902/krnl_release_2.673.710_2025.5.17_27.apk"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >KRNL</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/neplb47dv2crqx0/Roblox_Arceus_X_NEO_1.6.7.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Arceus X</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- VNG -->
+    <div
+      class="tab-pane fade"
+      id="vng"
+      role="tabpanel"
+      aria-labelledby="vng-tab"
+    >
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="Delta VNG"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta+Vng+ChinhThuc+V2.672+By+codertoolroblox.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Delta</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="KRNL VNG"
+            loading="lazy"
+          />
+          <a
+            href="https://wrdcdn.net/r/54921/1748417605851/krnl_vng_release_2.272.706_2025.5.17_7.apk"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >KRNL</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X VNG"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/tvyb9m7bpp8t7m7/Roblox_Arceus_X_NEO_VNG_1.6.7.apk/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Arceus X</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- iOS -->
+    <div
+      class="tab-pane fade"
+      id="ios"
+      role="tabpanel"
+      aria-labelledby="ios-tab"
+    >
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="Delta iOS"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/n3mej8y92v24efb/Delta_iOS_2.673.0_signed.ipa/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Delta</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X iOS"
+            loading="lazy"
+          />
+          <a
+            href="https://www.mediafire.com/file/79mu9tp7qooqud1/Roblox_Arceus_X_NEO_iOS_1.6.7_signed.ipa/file"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Arceus X</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Windows -->
+    <div
+      class="tab-pane fade"
+      id="windows"
+      role="tabpanel"
+      aria-labelledby="windows-tab"
+    >
+      <div class="d-flex flex-wrap justify-content-center gap-4">
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="Delta Windows"
+            loading="lazy"
+          />
+          <a
+            href="https://cdn.discordapp.com/attachments/1330609029564997632/1358531233354153758/Delta_2.673.5_win.zip"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Delta</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/5968/5968705.png"
+            alt="KRNL Windows"
+            loading="lazy"
+          />
+          <a
+            href="https://cdn.discordapp.com/attachments/1330609029564997632/1358505323154498154/krnl_2.672.10_win.zip"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >KRNL</a
+          >
+        </div>
+
+        <div class="executor-card">
+          <img
+            class="avatar"
+            src="https://cdn-icons-png.flaticon.com/512/733/733579.png"
+            alt="Arceus X Windows"
+            loading="lazy"
+          />
+          <a
+            href="https://cdn.discordapp.com/attachments/1330609029564997632/1358520278725438510/ArceusX_1.6.7_win.zip"
+            class="executor-link wave-effect"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Arceus X</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
