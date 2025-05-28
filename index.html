@@ -1,169 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Roblox Executors Dashboard</title>
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      color: white;
-      min-height: 100vh;
-      padding-top: 70px;
-    }
-    header {
-      background-color: #121212cc;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.7);
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1030;
-      padding: 10px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    header h1 {
-      color: #00c6ff;
-      font-weight: 700;
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    .discord-btn {
-      background: linear-gradient(45deg, #5865f2, #404eed);
-      border-radius: 30px;
-      padding: 8px 18px;
-      color: white;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.3s ease;
-    }
-    .discord-btn:hover {
-      background: linear-gradient(45deg, #404eed, #5865f2);
-      color: #e0e0ff;
-    }
-    .music-toggle {
-      margin-left: 15px;
-      vertical-align: middle;
-      cursor: pointer;
-    }
-    .nav-tabs .nav-link {
-      color: white;
-      font-weight: 600;
-      border-radius: 20px;
-      margin: 0 5px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .nav-tabs .nav-link.active {
-      background: #00c6ff;
-      color: #121212;
-      font-weight: 700;
-      box-shadow: 0 4px 8px #00c6ffaa;
-    }
-    .card {
-      background: #1e1e2f;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-    }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px #00c6ffaa;
-    }
-    .card-img-top {
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      margin: 15px auto 10px auto;
-      border: 3px solid #00c6ff;
-      transition: transform 0.3s ease;
-    }
-    .card:hover .card-img-top {
-      transform: scale(1.1);
-    }
-    .card-body {
-      text-align: center;
-      padding-bottom: 20px;
-    }
-    .card-body a {
-      color: #00c6ff;
-      font-weight: 700;
-      text-decoration: none;
-      word-break: break-word;
-    }
-    .card-body a:hover {
-      text-decoration: underline;
-      color: #00a0d9;
-    }
-    .search-bar {
-      max-width: 480px;
-      margin: 30px auto 20px auto;
-    }
-    .form-control {
-      background: #121212;
-      color: white;
-      border: 1px solid #444;
-      border-radius: 30px;
-      padding: 12px 20px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-    .form-control:focus {
-      border-color: #00c6ff;
-      box-shadow: 0 0 8px #00c6ffaa;
-      background: #1e1e2f;
-      color: white;
-    }
-    .table thead th {
-      border-bottom: 2px solid #00c6ff;
-      color: #00c6ff;
-    }
-    .table tbody tr:hover {
-      background: #00c6ff22;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .setting-menu {
-      background: #121212cc;
-      padding: 15px 20px;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.7);
-      margin-top: 20px;
-      max-width: 320px;
-      color: white;
-    }
-    .setting-menu h5 {
-      color: #00c6ff;
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    /* Scrollbar style */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: #00c6ff88;
-      border-radius: 10px;
-    }
-  </style>
-</head>
 <body>
 
 <header>
   <h1>Roblox Executors Dashboard</h1>
   <div class="d-flex align-items-center">
-    <label class="me-2" for="music-toggle">Nhạc nền</label>
+    <label class="me-2 mb-0" for="music-toggle" style="user-select:none; cursor:pointer;">Nhạc nền</label>
     <input class="form-check-input music-toggle" type="checkbox" id="music-toggle" checked />
     <a href="https://discord.gg/EzV3WbHBy2" target="_blank" class="discord-btn ms-3">Join Discord</a>
   </div>
 </header>
+
+<!-- Embed YouTube Video Nhạc nền -->
+<div id="musicContainer" class="container mt-3" style="max-width: 900px; margin-bottom: 30px;">
+  <div class="ratio ratio-16x9 rounded shadow" style="overflow: hidden;">
+    <iframe 
+      id="musicIframe" 
+      src="https://www.youtube.com/embed/2dJNaGxPHxE?autoplay=1&loop=1&playlist=2dJNaGxPHxE&controls=0&modestbranding=1&rel=0" 
+      title="Luna Bala Slowed To Perfection" 
+      allow="autoplay; encrypted-media" 
+      allowfullscreen 
+      frameborder="0"
+    ></iframe>
+  </div>
+</div>
 
 <div class="container mt-4">
   <div class="search-bar">
@@ -182,9 +40,6 @@
     </li>
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="tab-windows" data-bs-toggle="tab" data-bs-target="#windows" type="button" role="tab">Windows</button>
-    </li>
-    <li class="nav-item" role="presentation">
-      <button class="nav-link" id="tab-wave" data-bs-toggle="tab" data-bs-target="#wave" type="button" role="tab">Wave</button>
     </li>
   </ul>
 
@@ -279,9 +134,9 @@
       </div>
     </div>
 
-    <!-- Windows -->
+    <!-- Windows + Wave -->
     <div class="tab-pane fade" id="windows" role="tabpanel" aria-labelledby="tab-windows">
-      <div class="row g-3">
+      <div class="row g-3 justify-content-center">
         <div class="col-md-6 col-lg-4">
           <div class="card executor-card">
             <img src="https://repository-images.githubusercontent.com/764099728/cd3b348b-04b1-408f-9c84-ae7a6d7e960a" alt="Swift Executor" class="card-img-top" />
@@ -290,12 +145,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Wave Executor -->
-    <div class="tab-pane fade" id="wave" role="tabpanel" aria-labelledby="tab-wave">
-      <div class="row g-3 justify-content-center">
         <div class="col-md-6 col-lg-4">
           <div class="card executor-card">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaA-tWtW5J2BlQCpnds0Lh2vE6Lq5OEnS0cmgNjf9Tzg&s" alt="Wave Executor" class="card-img-top" />
@@ -307,16 +156,7 @@
       </div>
     </div>
   </div>
-
-  <div class="setting-menu mx-auto mt-5">
-    <h5>Cài đặt & Tùy chọn</h5>
-    <p>Phát nhạc nền YouTube:</p>
-    <p><small>Bật/Tắt nhạc nền bằng toggle trên header.</small></p>
-  </div>
 </div>
-
-<!-- Audio Player (ẩn) -->
-<audio id="bgMusic" src="https://www.youtube.com/embed/2dJNaGxPHxE?list=TLGG1aLGMEKhFq4yODA1MjAyNQ" loop autoplay></audio>
 
 <!-- Bootstrap 5 JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -324,38 +164,19 @@
 <script>
   // Nhạc nền bật tắt
   const musicToggle = document.getElementById('music-toggle');
-  const bgMusic = document.getElementById('bgMusic');
-
-  // Vì YouTube không cho embed dạng audio src, ta sẽ nhúng iframe thay thế
-  const iframeSrc = "https://www.youtube.com/embed/2dJNaGxPHxE?list=TLGG1aLGMEKhFq4yODA1MjAyNQ&autoplay=1&loop=1&playlist=2dJNaGxPHxE";
-  let musicIframe;
-
-  function createMusicIframe() {
-    musicIframe = document.createElement('iframe');
-    musicIframe.setAttribute('src', iframeSrc);
-    musicIframe.setAttribute('allow', 'autoplay');
-    musicIframe.style.display = 'none';
-    document.body.appendChild(musicIframe);
-  }
-
-  function removeMusicIframe() {
-    if (musicIframe) {
-      document.body.removeChild(musicIframe);
-      musicIframe = null;
-    }
-  }
+  const musicContainer = document.getElementById('musicContainer');
 
   musicToggle.addEventListener('change', () => {
     if (musicToggle.checked) {
-      createMusicIframe();
+      musicContainer.style.display = 'block';
     } else {
-      removeMusicIframe();
+      musicContainer.style.display = 'none';
     }
   });
 
-  // Khởi tạo nhạc nền khi tải trang nếu bật
-  if (musicToggle.checked) {
-    createMusicIframe();
+  // Khởi tạo trạng thái ban đầu
+  if (!musicToggle.checked) {
+    musicContainer.style.display = 'none';
   }
 
   // Tìm kiếm executor
@@ -371,4 +192,3 @@
 </script>
 
 </body>
-</html>
