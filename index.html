@@ -11,6 +11,7 @@
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding-top: 120px; /* header + video */
+      margin: 0;
     }
     header {
       position: fixed;
@@ -44,6 +45,7 @@
       user-select: none;
       transition: filter 0.3s ease;
       text-decoration: none;
+      white-space: nowrap;
     }
     .btn-discord:hover {
       filter: brightness(1.1);
@@ -83,6 +85,7 @@
       text-decoration: none;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      white-space: nowrap;
     }
     .executor-link:hover {
       background-color: rgba(0, 198, 255, 0.15);
@@ -107,6 +110,7 @@
       height: 56px;
       border-radius: 50%;
       object-fit: cover;
+      flex-shrink: 0;
     }
     .section-title {
       font-size: 1.75rem;
@@ -121,6 +125,7 @@
     .container {
       max-width: 900px;
       margin: 0 auto 3rem;
+      padding: 0 1rem;
     }
     /* Embed video styling */
     .video-container {
@@ -181,6 +186,11 @@
     <div><a href="https://wrdcdn.net/r/54921/krnl_release.apk" target="_blank" class="executor-link wave-effect">KRNL</a></div>
   </div>
 
+  <div class="executor-card mb-3">
+    <img class="avatar" src="https://i.imgur.com/XvwSxKD.png" alt="Delta" />
+    <div><a href="https://mediafire.com/file/xyz/delta_example" target="_blank" class="executor-link wave-effect">Example Executor</a></div>
+  </div>
+
   <!-- VNG -->
   <h2 class="section-title">VNG</h2>
 
@@ -231,7 +241,7 @@
   <h2 class="section-title">Windows</h2>
 
   <div class="executor-card mb-3">
-    <img class="avatar" src="https://cdn.discordapp.com/icons/1175752908298831932/35c15413fcd4b899d9c3c7a8d16a5f9d.webp" alt="Swift" />
+    <img class="avatar" src="https://cdn.discordapp.com/attachments/1175752908298831932/1175753066331983920/Swift_Logo.png" alt="Swift" />
     <div><a href="https://www.mediafire.com/file/swift_executor/Swift.zip/file" target="_blank" class="executor-link wave-effect">Swift</a></div>
   </div>
 
