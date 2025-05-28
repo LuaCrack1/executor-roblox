@@ -10,7 +10,7 @@
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding-top: 140px;
+      padding-top: 120px; /* header + video */
     }
     header {
       position: fixed;
@@ -43,9 +43,11 @@
       cursor: pointer;
       user-select: none;
       transition: filter 0.3s ease;
+      text-decoration: none;
     }
     .btn-discord:hover {
       filter: brightness(1.1);
+      text-decoration: none;
     }
     .btn-discord.wave-effect::after,
     .executor-link.wave-effect::after {
@@ -116,9 +118,9 @@
       padding-bottom: 0.3rem;
       max-width: max-content;
     }
-    /* Responsive container padding */
     .container {
       max-width: 900px;
+      margin: 0 auto 3rem;
     }
     /* Embed video styling */
     .video-container {
@@ -133,10 +135,7 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.7);
       border-radius: 10px;
       overflow: hidden;
-    }
-    /* Spacer for content below video */
-    .spacer {
-      height: 240px; /* video height + header height */
+      background: black;
     }
   </style>
 </head>
@@ -156,8 +155,6 @@
     allowfullscreen>
   </iframe>
 </div>
-
-<div class="spacer"></div>
 
 <div class="container">
 
