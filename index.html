@@ -1,429 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Roblox Executors Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
-      min-height: 100vh;
-      padding-top: 70px; /* header fixed height */
+      font-family: 'Segoe UI', sans-serif;
+      padding-top: 100px;
     }
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
+      background-color: #121212cc;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
       z-index: 1030;
-      background: rgba(18, 18, 18, 0.9);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
       padding: 0.75rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    header h1 {
-      color: #00c6ff;
-      font-weight: 700;
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    .btn-gradient {
+    .btn-discord {
       background: linear-gradient(45deg, #5865f2, #404eed);
       border: none;
+      border-radius: 30px;
+      padding: 0.45rem 1.25rem;
       color: white;
       font-weight: 600;
-      border-radius: 50px;
-      box-shadow: 0 4px 10px rgba(88, 101, 242, 0.6);
-      transition: transform 0.2s ease;
-      user-select: none;
-    }
-    .btn-gradient:hover, .btn-gradient:focus {
-      background: linear-gradient(45deg, #404eed, #5865f2);
-      box-shadow: 0 6px 15px rgba(88, 101, 242, 0.9);
-      transform: scale(1.05);
-      color: #fff;
-    }
-    .btn-gradient:active {
-      transform: scale(0.95);
-    }
-    .btn-gradient:focus-visible {
-      outline: 3px solid #00c6ff;
-      outline-offset: 2px;
-    }
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease;
-    }
-    .card.executor-card {
-      background: rgba(30, 30, 47, 0.85);
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-    }
-    .card.executor-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.85);
-    }
-    .card-body a {
-      color: #00c6ff;
-      font-weight: 700;
-      text-decoration: none;
-      user-select: text;
-    }
-    .card-body a:hover {
-      text-decoration: underline;
-    }
-    .tabs-btn-group {
-      margin: 2rem auto 1.5rem;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-    .tabs-btn-group .btn {
-      border-radius: 50px;
-      font-weight: 600;
-      min-width: 110px;
-      color: white;
-      background: #2c3e50;
-      border: none;
-      transition: background 0.3s ease;
-    }
-    .tabs-btn-group .btn.active {
-      background: #00c6ff;
-      color: #121212;
-      box-shadow: 0 0 12px #00c6ff;
-    }
-    .tabs-btn-group .btn:hover:not(.active) {
-      background: #1a2a3a;
-    }
-    .tab-content {
-      max-width: 900px;
-      margin: 0 auto 3rem;
-    }
-    .search-bar {
-      max-width: 500px;
-      margin: 1.5rem auto;
-    }
-    .search-bar input {
-      border-radius: 25px;
-      padding: 12px 20px;
-      font-size: 1rem;
-      border: 1px solid #666;
-      background: #121212;
-      color: white;
-      width: 100%;
-      box-shadow: inset 0 0 6px #000000cc;
-      transition: border-color 0.3s ease;
-    }
-    .search-bar input::placeholder {
-      color: #999;
-    }
-    .search-bar input:focus {
-      outline: none;
-      border-color: #00c6ff;
-      box-shadow: 0 0 8px #00c6ff;
-      background: #0d131a;
-    }
-    iframe#ytplayer {
-      display: block;
-      width: 100%;
-      max-width: 900px;
-      height: 450px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.7);
-      margin: 1rem auto 3rem;
-      transition: opacity 0.5s ease;
-    }
-    .wave-effect {
       position: relative;
       overflow: hidden;
     }
-    .wave-effect:after {
+    .btn-discord:hover {
+      filter: brightness(1.1);
+    }
+    .wave-effect::after {
       content: "";
       position: absolute;
-      width: 100px;
-      height: 100px;
-      background: rgba(0,198,255,0.5);
       border-radius: 50%;
-      transform: scale(0);
-      opacity: 0;
+      width: 100%;
+      height: 100%;
+      top: 0; left: 0;
       pointer-events: none;
-      animation: wave 0.6s linear;
-      z-index: 10;
+      transform: scale(0);
+      background: rgba(255, 255, 255, 0.3);
+      animation: ripple 0.6s linear;
     }
-    @keyframes wave {
-      0% {
-        transform: scale(0);
-        opacity: 0.7;
-      }
-      100% {
-        transform: scale(4);
+    .wave-effect:active::after {
+      animation-name: ripple;
+    }
+    @keyframes ripple {
+      to {
+        transform: scale(2.5);
         opacity: 0;
       }
+    }
+    .executor-link {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      color: #00c6ff;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .executor-link:hover {
+      background-color: rgba(0, 198, 255, 0.15);
+      text-decoration: none;
+    }
+    .executor-card {
+      background: #1e1e2f;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: transform 0.3s ease;
+    }
+    .executor-card:hover {
+      transform: translateY(-5px);
+    }
+    .executor-card img.avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    iframe.music {
+      position: absolute;
+      top: -500px;
+      width: 0;
+      height: 0;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Roblox Executors Dashboard</h1>
-    <div class="d-flex align-items-center gap-3">
-      <button id="music-toggle" class="btn btn-gradient" aria-pressed="true" title="Toggle background music">🎵 Music On</button>
-      <a id="discord-btn" href="https://discord.gg/EzV3WbHBy2" target="_blank" class="btn btn-gradient wave-effect" rel="noopener noreferrer" aria-label="Join Discord Server">Join Discord</a>
-    </div>
+    <h1 class="h5">Roblox Executors Dashboard</h1>
+    <a href="https://discord.gg/EzV3WbHBy2" target="_blank" class="btn-discord wave-effect">Join Discord</a>
   </header>
 
-  <main class="container">
-    <div class="search-bar">
-      <input type="search" id="search-input" placeholder="Tìm kiếm executor..." aria-label="Search executors" />
+  <iframe class="music" src="https://www.youtube.com/embed/2dJNaGxPHxE?autoplay=1&loop=1&playlist=2dJNaGxPHxE"></iframe>
+
+  <div class="container mt-4">
+    <ul class="nav nav-tabs mb-4" id="executorTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="qt-tab" data-bs-toggle="tab" data-bs-target="#qt" type="button" role="tab">Quốc Tế</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="vng-tab" data-bs-toggle="tab" data-bs-target="#vng" type="button" role="tab">VNG</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="ios-tab" data-bs-toggle="tab" data-bs-target="#ios" type="button" role="tab">iOS</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="win-tab" data-bs-toggle="tab" data-bs-target="#win" type="button" role="tab">Windows</button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- Quốc tế -->
+      <div class="tab-pane fade show active" id="qt" role="tabpanel">
+        <div class="executor-card mb-3">
+          <img class="avatar" src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" />
+          <div><a href="https://www.mediafire.com/file/neplb47dv2crqx0/Roblox_Arceus_X_NEO.apk/file" target="_blank" class="executor-link wave-effect">Arceus X</a></div>
+        </div>
+        <div class="executor-card mb-3">
+          <img class="avatar" src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp" />
+          <div><a href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus.apk/file" target="_blank" class="executor-link wave-effect">Fluxus</a></div>
+        </div>
+      </div>
+
+      <!-- VNG -->
+      <div class="tab-pane fade" id="vng" role="tabpanel">
+        <div class="executor-card mb-3">
+          <img class="avatar" src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" />
+          <div><a href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta.apk/file" target="_blank" class="executor-link wave-effect">Delta</a></div>
+        </div>
+      </div>
+
+      <!-- iOS -->
+      <div class="tab-pane fade" id="ios" role="tabpanel">
+        <div class="executor-card mb-3">
+          <img class="avatar" src="https://cdn.discordapp.com/icons/1175752908298831932/35c15413fcd4b899d9c3c7a8d16a5f9d.webp" />
+          <div><a href="https://www.mediafire.com/file/swift_executor/Swift.zip/file" target="_blank" class="executor-link wave-effect">Swift</a></div>
+        </div>
+      </div>
+
+      <!-- Windows -->
+      <div class="tab-pane fade" id="win" role="tabpanel">
+        <div class="executor-card mb-3">
+          <img class="avatar" src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" />
+          <div><a href="https://wrdcdn.net/r/54921/krnl_release.apk" target="_blank" class="executor-link wave-effect">KRNL</a></div>
+        </div>
+        <div class="executor-card mb-3">
+          <img class="avatar" src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360084569788556/Thiet_ke_chua_co_ten-removebg-preview.png" />
+          <div><a href="https://www.mediafire.com/file/x6xqedf00wpehjr/Wave.zip/file" target="_blank" class="executor-link wave-effect">Wave</a></div>
+        </div>
+      </div>
     </div>
-
-    <div class="tabs-btn-group" role="tablist" aria-label="Executor Platform Tabs">
-      <button class="btn active" role="tab" aria-selected="true" aria-controls="tab-international" id="tab-btn-international">Quốc Tế</button>
-      <button class="btn" role="tab" aria-selected="false" aria-controls="tab-vng" id="tab-btn-vng">VNG</button>
-      <button class="btn" role="tab" aria-selected="false" aria-controls="tab-ios" id="tab-btn-ios">iOS</button>
-      <button class="btn" role="tab" aria-selected="false" aria-controls="tab-windows" id="tab-btn-windows">Windows</button>
-    </div>
-
-    <!-- Quốc Tế -->
-    <section id="tab-international" role="tabpanel" aria-labelledby="tab-btn-international" class="tab-content" style="display: block;">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X Quốc Tế" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/neplb47dv2crqx0/Roblox_Arceus_X_NEO_1.6.7.apk/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Arceus X Quốc Tế version 1.6.7">Arceus X Quốc Tế V1.6.7</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp" alt="Fluxus Quốc Tế" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus+Quocte+V2.671+Update+Ui+YTNghiarobloxtt.apk/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Fluxus Quốc Tế version 2.671">Fluxus Quốc Tế V2.671</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" alt="KRNL Quốc Tế" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://wrdcdn.net/r/54921/1747606249618/krnl_release_2.673.710_2025.5.17_26.apk" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download KRNL Quốc Tế">KRNL Quốc Tế</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta Quốc Tế" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file_premium/2cxf1omjokhqjn3/Delta-2.671.1822.apk/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Delta Quốc Tế version 2.671.1822">Delta Quốc Tế V2.671.1822</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- VNG -->
-    <section id="tab-vng" role="tabpanel" aria-labelledby="tab-btn-vng" class="tab-content" style="display: none;">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X VNG" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/trqqxtbzp8vzxp9/Roblox_-_VNG_Arceus_X_NEO_1.6.7.apk/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Arceus X VNG version 1.6.7">Arceus X VNG V1.6.7</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" alt="KRNL VNG" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://wrdcdn.net/r/54921/1747606313016/krnl_vng_release_2.272.706_2025.5.17_6.apk" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download KRNL VNG">KRNL VNG</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta VNG" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta+Vng+ChinhThuc+V2.672+By+codertoolroblox.apk/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Delta VNG version 2.672">Delta VNG V2.672</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- iOS -->
-    <section id="tab-ios" role="tabpanel" aria-labelledby="tab-btn-ios" class="tab-content" style="display: none;">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://d1wzdj81h1hubn.cloudfront.net/75085b630811f897.png" alt="Arceus X iOS" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/6lcgdmn244ta2n5/ArceusX_1.6.4_2.668.658.ipa/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Arceus X iOS">Arceus X iOS</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta iOS" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/kwlnbdtvm5ebylw/Delta-668.660-02.ipa.zip/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Delta iOS version 668.660-02">Delta iOS V668.660-02</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Windows -->
-    <section id="tab-windows" role="tabpanel" aria-labelledby="tab-btn-windows" class="tab-content" style="display: none;">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360084569788556/Thiet_ke_chua_co_ten-removebg-preview.png" alt="Wave Executor Windows" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/x6xqedf00wpehjr/Wave.zip/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Wave Executor Windows">Wave Executor V最新</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://fluxus-team.net/wp-content/uploads/2024/03/Fluxus-Logo.webp" alt="Fluxus Windows" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/5c0624ab3bw6edx/Fluxus_Windows_2.671.zip/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Fluxus Windows version 2.671">Fluxus Windows V2.671</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://deltaroblox.org/wp-content/uploads/2025/05/Delta-Roblox.png" alt="Delta Windows" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/xk7vyttq7bjswxd/Delta_Windows_2.672.zip/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Delta Windows version 2.672">Delta Windows V2.672</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://play-lh.googleusercontent.com/6r1-cMLJ_Oao25M1NjstmGXob3gCNWjulRgRfafumFZSmSyiv9hvx-gCNX5NVZLMsQ=w465" alt="KRNL Windows" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://wrdcdn.net/r/54921/1747606249618/krnl_release_2.673.710_2025.5.17_26.exe" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download KRNL Windows">KRNL Windows</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="card executor-card p-3 d-flex align-items-center gap-3">
-            <img class="avatar" src="https://swiftexecutor.com/logo.png" alt="Swift Executor Windows" />
-            <div class="card-body p-0 flex-grow-1">
-              <a href="https://www.mediafire.com/file/xyz123swift/Swift_Windows.zip/file" target="_blank" rel="noopener noreferrer" class="executor-link wave-effect" aria-label="Download Swift Executor Windows">Swift Windows V最新</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <iframe
-      id="ytplayer"
-      src="https://www.youtube.com/embed/2dJNaGxPHxE?autoplay=1&mute=1&loop=1&playlist=2dJNaGxPHxE"
-      title="Luna Bala Slowed to Perfection"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-    ></iframe>
-  </main>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    // Tab switching
-    const tabs = document.querySelectorAll(".tabs-btn-group .btn");
-    const tabContents = document.querySelectorAll(".tab-content");
-    tabs.forEach((tab, idx) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach(t => {
-          t.classList.remove("active");
-          t.setAttribute("aria-selected", "false");
-        });
-        tab.classList.add("active");
-        tab.setAttribute("aria-selected", "true");
-        tabContents.forEach(c => (c.style.display = "none"));
-        tabContents[idx].style.display = "block";
-        filterExecutors();
-      });
-    });
-
-    // Search filtering
-    const searchInput = document.getElementById("search-input");
-    searchInput.addEventListener("input", filterExecutors);
-
-    function filterExecutors() {
-      const query = searchInput.value.toLowerCase();
-      const activeTab = document.querySelector(".tabs-btn-group .btn.active").getAttribute("aria-controls");
-      const container = document.getElementById(activeTab);
-      const cards = container.querySelectorAll(".executor-card");
-      cards.forEach(card => {
-        const text = card.innerText.toLowerCase();
-        card.style.display = text.includes(query) ? "flex" : "none";
-      });
-    }
-
-    // Music toggle
-    const musicToggle = document.getElementById("music-toggle");
-    const ytplayer = document.getElementById("ytplayer");
-    let musicOn = true;
-
-    musicToggle.addEventListener("click", () => {
-      musicOn = !musicOn;
-      if (musicOn) {
-        ytplayer.style.opacity = "1";
-        musicToggle.textContent = "🎵 Music On";
-        musicToggle.setAttribute("aria-pressed", "true");
-      } else {
-        ytplayer.style.opacity = "0";
-        musicToggle.textContent = "🔇 Music Off";
-        musicToggle.setAttribute("aria-pressed", "false");
-      }
-    });
-
-    // Wave effect on buttons
-    document.querySelectorAll(".wave-effect").forEach(btn => {
-      btn.addEventListener("click", function (e) {
-        const circle = document.createElement("span");
-        circle.style.position = "absolute";
-        circle.style.borderRadius = "50%";
-        circle.style.transform = "scale(0)";
-        circle.style.animation = "wave 0.6s linear";
-        circle.style.backgroundColor = "rgba(0,198,255,0.5)";
-        circle.style.pointerEvents = "none";
-        circle.style.left = `${e.offsetX - 50}px`;
-        circle.style.top = `${e.offsetY - 50}px`;
-        circle.style.width = "100px";
-        circle.style.height = "100px";
-        circle.style.zIndex = "10";
-
-        this.style.position = "relative";
-        this.appendChild(circle);
-        setTimeout(() => circle.remove(), 600);
-      });
-    });
-  </script>
 </body>
 </html>
