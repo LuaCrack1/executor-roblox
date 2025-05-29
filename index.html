@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roblox Executors Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+    .nav-tabs .nav-link {
+      color: #58a6ff;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .nav-tabs .nav-link.active {
+      color: white;
+      background-color: #238636;
+      border-color: #238636 #238636 #0d1117;
+      border-radius: 8px 8px 0 0;
+    }
+    .executor-card {
+      background: #161b22;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 0 10px #58a6ff33;
+      transition: transform 0.3s ease;
+    }
+    .executor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px #58a6ffcc;
+    }
+    .executor-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 2px solid #58a6ff;
+      background: #010409;
+      flex-shrink: 0;
+    }
+    .executor-info h4 {
+      margin: 0 0 5px;
+    }
+    .executor-info p {
+      margin: 0 0 8px;
+      color: #8b949e;
+      font-size: 0.9rem;
+    }
+    .btn-download {
+      background-color: #238636;
+      color: white;
+      font-weight: 600;
+      margin-right: 8px;
+      margin-top: 6px;
+    }
+    .btn-download:hover {
+      background-color: #2ea043;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Roblox Executors Dashboard</h1>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs justify-content-center mb-4" id="platformTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="intl-tab" data-bs-toggle="tab" data-bs-target="#intl" type="button" role="tab" aria-controls="intl" aria-selected="true">Quốc Tế</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="vng-tab" data-bs-toggle="tab" data-bs-target="#vng" type="button" role="tab" aria-controls="vng" aria-selected="false">VNG</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="ios-tab" data-bs-toggle="tab" data-bs-target="#ios" type="button" role="tab" aria-controls="ios" aria-selected="false">iOS</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="windows-tab" data-bs-toggle="tab" data-bs-target="#windows" type="button" role="tab" aria-controls="windows" aria-selected="false">Windows</button>
+      </li>
+    </ul>
+
+    <!-- Tab contents -->
+    <div class="tab-content" id="platformTabsContent">
+
+      <!-- Quốc Tế -->
+      <div class="tab-pane fade show active" id="intl" role="tabpanel" aria-labelledby="intl-tab">
+        <div class="executor-card">
+          <img src="img/fluxus.png" alt="Fluxus Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Fluxus</h4>
+            <p>Most popular Roblox executor with powerful features.</p>
+            <a href="https://example.com/fluxus_intl.exe" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+        <div class="executor-card">
+          <img src="img/delta.png" alt="Delta Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Delta</h4>
+            <p>Fast and stable executor with modern UI.</p>
+            <a href="https://example.com/delta_intl.exe" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VNG -->
+      <div class="tab-pane fade" id="vng" role="tabpanel" aria-labelledby="vng-tab">
+        <div class="executor-card">
+          <img src="img/arceusx.png" alt="Arceus X Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Arceus X</h4>
+            <p>Lightweight and easy to use executor for VNG.</p>
+            <a href="https://example.com/arceusx_vng.exe" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+        <div class="executor-card">
+          <img src="img/codex.png" alt="Code X Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Code X</h4>
+            <p>Advanced executor for VNG players.</p>
+            <a href="https://example.com/codex_vng.exe" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- iOS -->
+      <div class="tab-pane fade" id="ios" role="tabpanel" aria-labelledby="ios-tab">
+        <div class="executor-card">
+          <img src="img/swift.png" alt="Swift Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Swift</h4>
+            <p>Lightweight and fast executor for iOS.</p>
+            <a href="https://example.com/swift_ios.ipa" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+        <div class="executor-card">
+          <img src="img/wave.png" alt="Wave Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Wave</h4>
+            <p>Executor with unique wave effect UI on iOS.</p>
+            <a href="https://example.com/wave_ios.ipa" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Windows -->
+      <div class="tab-pane fade" id="windows" role="tabpanel" aria-labelledby="windows-tab">
+        <div class="executor-card">
+          <img src="img/krnl.png" alt="Krnl Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Krnl</h4>
+            <p>Popular executor with great script compatibility.</p>
+            <a href="https://example.com/krnl_windows.exe" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+        <div class="executor-card">
+          <img src="img/trigon.png" alt="Trigon Logo" class="executor-img" />
+          <div class="executor-info">
+            <h4>Trigon</h4>
+            <p>Executor with fast injection and high stability.</p>
+            <a href="https://example.com/trigon_windows.exe" target="_blank" class="btn btn-download btn-sm">Download</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
