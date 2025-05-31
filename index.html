@@ -1,98 +1,350 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Giao Diện Web Đẹp</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Roblox Executors Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
     body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: linear-gradient(135deg, #667eea, #764ba2);
       color: white;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      padding-top: 4.5rem;
     }
-
-    .navbar {
-      background-color: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(10px);
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 1030;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-
-    .card {
-      background-color: rgba(255, 255, 255, 0.1);
+    header h1 {
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    .btn-discord {
+      background: #5865F2;
       border: none;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      font-weight: 600;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-discord:hover {
+      background: #4752c4;
+      text-decoration: none;
+      color: white;
+    }
+    .executor-card {
+      background: rgba(255 255 255 / 0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      margin-bottom: 1.5rem;
       transition: transform 0.3s ease;
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
     }
-
-    .card:hover {
-      transform: translateY(-10px);
+    .executor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
     }
-
-    .avatar {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
+    .executor-img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
       border-radius: 50%;
-      border: 3px solid #fff;
+      background: white;
+      padding: 10px;
+      flex-shrink: 0;
     }
-
-    .settings-icon {
-      cursor: pointer;
+    .executor-info {
+      flex: 1 1 300px;
     }
-
+    .executor-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+    .platform-label {
+      font-weight: 600;
+      margin-top: 0.5rem;
+      margin-bottom: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.85rem;
+      color: #ddd;
+    }
+    .download-links a {
+      display: inline-block;
+      margin-right: 0.8rem;
+      margin-bottom: 0.3rem;
+      background: #764ba2;
+      color: white;
+      padding: 0.35rem 0.7rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .download-links a:hover {
+      background: #5b357a;
+      text-decoration: none;
+      color: white;
+    }
     footer {
-      margin-top: 50px;
+      margin-top: 3rem;
       text-align: center;
-      font-size: 14px;
-      color: #ccc;
+      font-size: 0.9rem;
+      color: #bbb;
+      padding-bottom: 1rem;
+    }
+    iframe {
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+      margin-bottom: 2rem;
+      max-width: 100%;
+      height: 360px;
+    }
+    @media (max-width: 576px) {
+      .executor-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .executor-img {
+        margin: 0 auto;
+      }
+      .executor-info {
+        flex: unset;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container-fluid">
-      <a class="navbar-brand text-white" href="#">🌐 My Dashboard</a>
-      <div class="ms-auto settings-icon text-white">
-        ⚙️
+<header>
+  <h1>Roblox Executors Dashboard</h1>
+  <a href="https://discord.gg/ncf9A4YHDE" target="_blank" rel="noopener" class="btn-discord">Join Discord</a>
+</header>
+
+<main class="container mt-4">
+
+  <!-- Video Embed -->
+  <div class="text-center mb-5">
+    <iframe 
+      src="https://www.youtube.com/embed/live_stream?channel=CqZ841EO-aw&autoplay=0&mute=1" 
+      allowfullscreen 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      title="Live Stream Video"
+      ></iframe>
+  </div>
+
+  <!-- Executor Cards -->
+
+  <!-- Arceus X -->
+  <div class="executor-card">
+    <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1378341613557911582/tai_xuong.png" alt="Arceus X" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Arceus X</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/jngjcgxp0ax6pcl/Arceus_X_NotWoops.apk/file" target="_blank" rel="noopener">Download APK</a>
       </div>
-    </div>
-  </nav>
-
-  <!-- Content -->
-  <div class="container mt-5 pt-5">
-    <div class="row g-4">
-
-      <!-- Card 1 -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card p-4 text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="Avatar" class="avatar mb-3">
-          <h5>Executor Arceus X</h5>
-          <p>Phiên bản mới nhất hỗ trợ Roblox Mobile</p>
-          <a href="#" class="btn btn-light btn-sm mt-2">Tải về</a>
-        </div>
+      <div class="platform-label">iOS</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/fczuwhx3ppgu73t/Arceus_X_IOS_NotWoops.ipa/file" target="_blank" rel="noopener">Download IPA</a>
       </div>
-
-      <!-- Card 2 -->
-      <div class="col-md-6 col-lg-4">
-        <div class="card p-4 text-center">
-          <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Avatar" class="avatar mb-3">
-          <h5>Executor Fluxus</h5>
-          <p>Siêu nhẹ, UI đẹp, dễ sử dụng</p>
-          <a href="#" class="btn btn-light btn-sm mt-2">Tải về</a>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer class="mt-5">
-    © 2025 Giao diện được thiết kế bởi bạn 🌟
-  </footer>
+  <!-- CodeX -->
+  <div class="executor-card">
+    <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1378341614023610408/tai_xuong.jpeg" alt="CodeX" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">CodeX</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/q1g1glqwo0eip7a/Codex_V2.674.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/8wja4ns07jvvqye/Codex_V2.674_VNG_NotWoops.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">iOS</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/cy582dwxfs2dgnz/Codex_V2.674_IOS_NotWoops.ipa/file" target="_blank" rel="noopener">Download IPA</a>
+      </div>
+    </div>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Delta -->
+  <div class="executor-card">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSE_0jP0m-2BjIBHAaCQpGcw49Bkju32j9h646GiNrXw&s" alt="Delta" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Delta</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/n6wcz8gc7nwfnwe/Delta_V2.674.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/3hxt0pvkx9sslhb/Delta_V2.674_VNG_NotWoops.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">iOS</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/bo813j4hxg5wkm2/Delta_IOS_NotWoops.ipa/file" target="_blank" rel="noopener">Download IPA</a>
+      </div>
+      <div class="platform-label">Windows</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/4yur6k7arw6k3eo/Delta_For_Windows_Release_3.exe/file" target="_blank" rel="noopener">Download EXE</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fluxus -->
+  <div class="executor-card">
+    <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360034975707166/fluxus-removebg-preview.png" alt="Fluxus" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Fluxus</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/8pc7gt6vdk98ppj/Fluxus_V2.7.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/k9ad9zq4jz61tq9/Fluxus_V2.7_VNG.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hydrogen -->
+  <div class="executor-card">
+    <img src="data:image/png;base64,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" alt="Hydrogen" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Hydrogen</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/3i80u3rnwox6djx/Hydrogen_Pro.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/jhyosrb82cceggk/Hydrogen_Pro_VNG.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">iOS</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/0i2u83qrqfbhyxj/Hydrogen_Pro_IOS.ipa/file" target="_blank" rel="noopener">Download IPA</a>
+      </div>
+      <div class="platform-label">Windows</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/v8x06rg9t30e19c/Hydrogen_For_Windows.exe/file" target="_blank" rel="noopener">Download EXE</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Krnl -->
+  <div class="executor-card">
+    <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360041224948766/krnl-removebg-preview.png" alt="Krnl" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Krnl</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/cg2zpibgrwp9nh1/Krnl_V2.7.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/bw0jn92b23xh0cl/Krnl_V2.7_VNG.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Swift -->
+  <div class="executor-card">
+    <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360031798713428/Swift-removebg-preview.png" alt="Swift" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Swift</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/8y8xzkmpu5y6ss1/Swift.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/hthpd34f38q3l0z/Swift_VNG.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">iOS</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/3f7cqlf9v7kdqzd/Swift_IOS.ipa/file" target="_blank" rel="noopener">Download IPA</a>
+      </div>
+      <div class="platform-label">Windows</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/3cqez7k25i8qyy8/Swift_For_Windows.exe/file" target="_blank" rel="noopener">Download EXE</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trigon -->
+  <div class="executor-card">
+    <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360037442635066/Trigon-removebg-preview.png" alt="Trigon" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Trigon</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/0p1ib77t79dgj2h/Trigon.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/01rny1u6ks3pni6/Trigon_VNG.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">Windows</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/ayhkk8prj0xlwra/Trigon.exe/file" target="_blank" rel="noopener">Download EXE</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wave -->
+  <div class="executor-card">
+    <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360033453155336/Wave-removebg-preview.png" alt="Wave" class="executor-img" />
+    <div class="executor-info">
+      <div class="executor-name">Wave</div>
+      <div class="platform-label">Quốc Tế (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/64wp72oijbjmy9d/Wave.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">VNG (Android)</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/k09a81i13udtg1e/Wave_VNG.apk/file" target="_blank" rel="noopener">Download APK</a>
+      </div>
+      <div class="platform-label">iOS</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/n38ruqixr5ku0hk/Wave.ipa/file" target="_blank" rel="noopener">Download IPA</a>
+      </div>
+      <div class="platform-label">Windows</div>
+      <div class="download-links">
+        <a href="https://www.mediafire.com/file/4n8lkjtpdoa24v7/Wave.exe/file" target="_blank" rel="noopener">Download EXE</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Roblox Executors Dashboard &copy; 2025 - Developed by You
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
