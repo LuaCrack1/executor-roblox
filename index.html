@@ -1,84 +1,149 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roblox Executor</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roblox Executors Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(to right, #1e1e2f, #2c2c54);
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .executor-card {
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: none;
+      background-color: rgba(30, 41, 59, 0.9);
+    }
+
+    .executor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    .executor-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    .nav-tabs .nav-link.active {
+      background-color: #1e293b;
       color: white;
     }
-    .sidebar {
-      background-color: #111;
-      padding: 1rem;
-      min-height: 100vh;
-    }
-    .sidebar h4 {
-      color: #0dcaf0;
-    }
-    .executor-table td, .executor-table th {
-      vertical-align: middle;
-    }
-    .video-container iframe {
-      width: 100%;
-      height: 400px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-    }
-    .btn-discord {
-      background-color: #5865F2;
-      color: white;
-      border-radius: 30px;
-    }
-    .btn-discord:hover {
-      background-color: #4752C4;
+
+    .discord-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
     }
   </style>
 </head>
 <body>
-<div class="container-fluid">
-  <div class="row">
-    <!-- Sidebar -->
-    <div class="col-md-3 sidebar">
-      <h4>Roblox Executor</h4>
-      <ul class="nav flex-column">
-        <li class="nav-item"><a class="nav-link text-white" href="#">Tổng quan</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#executors">Executors</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="https://discord.gg/ncf9A4YHDE" target="_blank">Tham gia Discord</a></li>
-      </ul>
+
+  <header class="sticky-header p-3 d-flex justify-content-between align-items-center">
+    <h3 class="m-0">Roblox Executors Dashboard</h3>
+    <a href="https://discord.gg/ncf9A4YHDE" target="_blank" class="btn btn-outline-light discord-btn">Tham gia Discord</a>
+  </header>
+
+  <div class="container mt-4">
+    <div class="ratio ratio-16x9 mb-4">
+      <iframe src="https://www.youtube.com/embed/2dJNaGxPHxE?si=3pLVn4t6_3shpzQF" 
+              title="YouTube video" allowfullscreen></iframe>
     </div>
 
-    <!-- Main content -->
-    <div class="col-md-9 p-4">
-      <div class="video-container mb-4">
-        <iframe src="https://www.youtube.com/embed/cN-UJxy4JnM?si=7DI4apej-v57R10w" frameborder="0" allowfullscreen></iframe>
+    <ul class="nav nav-tabs mb-4" id="executorTabs" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#qt">Quốc Tế</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#vng">VNG</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#ios">iOS</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#win">Windows</button></li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- Quốc Tế -->
+      <div class="tab-pane fade show active" id="qt">
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card executor-card text-center p-3">
+              <img src="https://getwave.gg/_next/image?url=%2Fassets%2FWave.png&w=256&q=75" alt="Wave" class="mx-auto mb-3">
+              <h5 class="text-white">Wave</h5>
+              <a href="https://getwave.gg" target="_blank" class="btn btn-light mt-2">Tải về</a>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card executor-card text-center p-3">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhTit7-hEnYS4TXUZ0uOVFp2ZjBuqL2ktgnhdUSccMVw&s" alt="Ronix" class="mx-auto mb-3">
+              <h5 class="text-white">Ronix</h5>
+              <a href="https://ronix.dev" target="_blank" class="btn btn-light mt-2">Tải về</a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <h3 id="executors" class="mb-3">Danh sách Executor</h3>
-      <div class="table-responsive">
-        <table class="table table-dark table-hover executor-table">
-          <thead>
-            <tr>
-              <th>Executor</th>
-              <th>Quốc Tế</th>
-              <th>VNG</th>
-              <th>IOS</th>
-              <th>Windows</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Executor rows will be inserted here in the next steps -->
-          </tbody>
-        </table>
+      <!-- VNG -->
+      <div class="tab-pane fade" id="vng">
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card executor-card text-center p-3">
+              <img src="https://cdn.discordapp.com/attachments/1374360013719474208/1374360084569788556/Thiet_ke_chua_co_ten-removebg-preview.png" alt="Swift" class="mx-auto mb-3">
+              <h5 class="text-white">Swift</h5>
+              <a href="https://swiftvng.vercel.app" target="_blank" class="btn btn-light mt-2">Tải về</a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <a href="https://discord.gg/ncf9A4YHDE" class="btn btn-discord mt-3">🌐 Tham gia Discord</a>
+      <!-- iOS -->
+      <div class="tab-pane fade" id="ios">
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card executor-card text-center p-3">
+              <img src="https://cdn.discordapp.com/icons/1176559803263017091/8cbf6d6a78fcb3b62f7e4a2a9fc431e4.webp" alt="Delta" class="mx-auto mb-3">
+              <h5 class="text-white">Delta</h5>
+              <a href="https://delta-dev.vercel.app" target="_blank" class="btn btn-light mt-2">Tải về</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Windows -->
+      <div class="tab-pane fade" id="win">
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card executor-card text-center p-3">
+              <img src="https://cdn.discordapp.com/icons/1069711872119203971/a_ed7d785fc691cb8d78a515f4370819c2.gif" alt="Krnl" class="mx-auto mb-3">
+              <h5 class="text-white">Krnl</h5>
+              <a href="https://krnl.place" target="_blank" class="btn btn-light mt-2">Tải về</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
