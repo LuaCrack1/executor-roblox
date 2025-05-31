@@ -1,110 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roblox Executors Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Giao Diện Web Đẹp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding-top: 80px;
-      overflow-x: hidden;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
     }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+    }
+
     .card {
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
+      background-color: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
     }
+
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
     }
-    .card img {
-      border-radius: 50%;
+
+    .avatar {
       width: 80px;
       height: 80px;
       object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #fff;
     }
-    .nav-tabs .nav-link.active {
-      background-color: #343a40;
-      border-color: #dee2e6 #dee2e6 #fff;
+
+    .settings-icon {
+      cursor: pointer;
     }
-    .sticky-top {
-      background-color: #111;
-      z-index: 1030;
-    }
-    .rain {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background-image: url('https://pixabay.com/gifs/rain-fog-forest-4431/');
-      opacity: 0.2;
-      z-index: 1;
-    }
-    .container {
-      position: relative;
-      z-index: 2;
+
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      font-size: 14px;
+      color: #ccc;
     }
   </style>
 </head>
-
 <body>
-  <div class="rain"></div>
 
-  <nav class="navbar navbar-dark bg-dark fixed-top">
+  <!-- Header -->
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Roblox Executors Dashboard</span>
-      <a class="btn btn-outline-light" href="https://discord.gg/ncf9A4YHDE" target="_blank">Join Discord</a>
+      <a class="navbar-brand text-white" href="#">🌐 My Dashboard</a>
+      <div class="ms-auto settings-icon text-white">
+        ⚙️
+      </div>
     </div>
   </nav>
 
-  <div class="container text-center">
-    <div class="ratio ratio-16x9 mb-4">
-      <iframe src="https://www.youtube.com/embed/2dJNaGxPHxE?si=3pLVn4t6_3shpzQF" title="YouTube video" allowfullscreen></iframe>
-    </div>
+  <!-- Content -->
+  <div class="container mt-5 pt-5">
+    <div class="row g-4">
 
-    <ul class="nav nav-tabs mb-3" id="executorTabs" role="tablist">
-      <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#QuocTe">Quốc Tế</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#VNG">VNG</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#iOS">iOS</button></li>
-      <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#Windows">Windows</button></li>
-    </ul>
+      <!-- Card 1 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4 text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="Avatar" class="avatar mb-3">
+          <h5>Executor Arceus X</h5>
+          <p>Phiên bản mới nhất hỗ trợ Roblox Mobile</p>
+          <a href="#" class="btn btn-light btn-sm mt-2">Tải về</a>
+        </div>
+      </div>
 
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="QuocTe">
-        <!-- Quốc Tế Executors -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- Add executor cards here (Arceus X, Codex, Delta, Fluxus, Krnl, Trigon, Ronix) -->
+      <!-- Card 2 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card p-4 text-center">
+          <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Avatar" class="avatar mb-3">
+          <h5>Executor Fluxus</h5>
+          <p>Siêu nhẹ, UI đẹp, dễ sử dụng</p>
+          <a href="#" class="btn btn-light btn-sm mt-2">Tải về</a>
         </div>
       </div>
-      <div class="tab-pane fade" id="VNG">
-        <!-- VNG Executors -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- Add executor cards here -->
-        </div>
-      </div>
-      <div class="tab-pane fade" id="iOS">
-        <!-- iOS Executors -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- Add executor cards here -->
-        </div>
-      </div>
-      <div class="tab-pane fade" id="Windows">
-        <!-- Windows Executors -->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <!-- Add executor cards here (Wave, Swift, Krnl, Delta) -->
-        </div>
-      </div>
+
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  <!-- Footer -->
+  <footer class="mt-5">
+    © 2025 Giao diện được thiết kế bởi bạn 🌟
+  </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
